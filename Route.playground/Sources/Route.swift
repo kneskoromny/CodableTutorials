@@ -32,11 +32,15 @@ public struct Route: Decodable {
         
         var points: [Airport] = []
         let codes = try container.decode([String].self, forKey: .points)
+        print("CODES: \(codes)")
         for code in codes {
             let key = CodingKeys(stringValue: code)!
+            print("KEY: \(key)")
             let airport = try container.decode(Airport.self, forKey: key)
+            print("AIRPORT: \(airport)")
             points.append(airport)
         }
         self.points = points
+        print("points = \(points)")
     }
 }
